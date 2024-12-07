@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Ankit Suwasiya</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        header {
+            text-align: center;
+            border-bottom: 2px solid #4caf50;
+            padding-bottom: 20px;
+        }
+        header h1 {
+            font-size: 36px;
+            color: #4caf50;
+        }
+        header p {
+            font-size: 18px;
+            color: #555;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #4caf50;
+            text-transform: uppercase;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            font-size: 16px;
+            padding: 8px 0;
+        }
+        .skills, .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .skills span, .interests span {
+            background: #4caf50;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background: #4caf50;
+            color: #fff;
+            border-top: 2px solid #333;
+            border-radius: 0 0 10px 10px;
+        }
+        .download-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background: #4caf50;
+            color: #fff;
+            font-size: 16px;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .download-btn:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="resume">
+        <header>
+            <h1>Ankit Suwasiya</h1>
+            <p>Kurla, Mumbai - 400071 | suwasiyaankit81@gmail.com | +91-9137172146</p>
+        </header>
+
+        <div class="section">
+            <h2 class="section-title">Career Objective</h2>
+            <p>Motivated Science student with a focus on Computer Science. Skilled in foundational programming concepts, including C++ and HTML. Passionate about problem-solving, creative design, and eager to explore and contribute to innovative projects.</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Education</h2>
+            <ul>
+                <li><strong>HSC (Science, Bifocal in Computer Science):</strong> S.V.K.M College, Kurla (East) (July 2024 - Present)</li>
+                <li><strong>11th Class Science (85.83%):</strong> S.V.K.M College, Kurla (East) (July 2023 - April 2024)</li>
+                <li><strong>SSC (90.20%):</strong> Dhyan Vikash Night School, Kurla (July 2022 - March 2023)</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills">
+                <span>Programming: C++</span>
+                <span>Web Development: HTML</span>
+                <span>Tools: Visual Basic (Basic)</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Academic Project</h2>
+            <ul>
+                <li>Simple HTML Portfolio Website</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Extracurricular Activities</h2>
+            <ul>
+                <li>Participated in school and college marathons</li>
+                <li>Organized book-reading sessions in the library</li>
+                <li>Member of the art club, known for creative designs and drawings</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Interests</h2>
+            <div class="interests">
+                <span>Drawing</span>
+                <span>Reading Books</span>
+                <span>Running</span>
+            </div>
+        </div>
+    </div>
+
+    <button class="download-btn" onclick="downloadPDF()">Download as PDF</button>
+
+    <footer>
+        © 2024 Ankit Suwasiya | All Rights Reserved
+    </footer>
+
+    <script>
+        async function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Capture the resume container
+            const element = document.getElementById('resume');
+
+            // Use html2canvas to capture content
+            const canvas = await html2canvas(element);
+            const imgData = canvas.toDataURL('image/png');
+            const imgWidth = 190; // PDF width
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+            doc.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+            doc.save('Ankit_Suwasiya_Resume.pdf');
+        }
+    </script>
+</body>
+</html>
